@@ -37,3 +37,6 @@ for value in dices:
 for value in colors:
     x = colors[value]
     # print(x)
+
+# player picks a color 
+# checks the dice roll if it has the same outcome of the desired color by the player

@@ -12,5 +12,7 @@ roulette = [
 
 spin_type = []
 
+for x in roulette:
+    print(x)
 # while isTrue:
 #     for 
