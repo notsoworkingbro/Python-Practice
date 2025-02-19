@@ -29,9 +29,9 @@ multiplier = 0
 for value in dices:
     x = dices[value]
     print(x)
-    # if random_choice == x:
-    #     # multiplier += 1
-    #     # print(multiplier)
+    if random_choice == x:
+        multiplier += 1
+        print(multiplier)
         
 
 for value in colors:
