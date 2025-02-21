@@ -9,14 +9,7 @@
 # user-inputted word inside.
 
 string = input("Enter your value: ")
-print(string)
-
-n = count(string)
 
 print("O" + "=" * (12) + "O")
-print("|" + " "*(n) + string + " "*(n) + "|")
+print("|" + " "*((12-len(string))//2) + string + " "*((12-len(string))//2) + "|")
 print("O" + "=" * (12) + "O")
-
-# for i in range(0, n):
-#         print(" " * (0 + n - i - 1) + "*" * (2 * i + 1))cool
-#     print(" " * (n-1) + "*")
