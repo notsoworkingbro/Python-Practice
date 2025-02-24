@@ -44,7 +44,7 @@ class Areas:
     def square(self, l, w):
         return l*w
 
-    def trinagle(self, b, h):
+    def triangle(self, b, h):
         return b*h/2
 
 pp = PrintForMe()
@@ -65,5 +65,5 @@ area = Areas()
 
 pp.printIt(area.circle(5))
 pp.printIt(area.square(2, 5))
-pp.printIt(area.trinagle(2, 4))
+pp.printIt(area.triangle(2, 4))
 
