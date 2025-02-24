@@ -9,17 +9,17 @@ class Base:
 
 class Square:
     def solve_area(self, s1, s2):
-        return (s1 * s2)
+        return s1 * s2
 
 class Triangle:
     def solve_area(self, b, h):
-        return (b * h / 2)
+        return b * h / 2
 
 b = Base()
 print(b.solve_area(1, 2))
 
 s = Square()
-print(b.solve_area(1, 2))
+print(s.solve_area(1, 2))
 
 t = Triangle()
-print(b.solve_area(1, 2))
+print(t.solve_area(1, 2))
