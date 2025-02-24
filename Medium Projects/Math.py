@@ -37,10 +37,15 @@ class Trigonometry:
     def tan(self, opp, adj, hyp):
         return (opp/hyp)/(adj/hyp)
 
-
 class Areas:
     def circle(self, r):
         return (r*r)*3.14
+
+    def square(self, l, w):
+        return l*w
+
+    def trinagle(self, b, h):
+        return b*h/2
 
 pp = PrintForMe()
 operate = PEMDAS()
@@ -59,4 +64,6 @@ pp.printIt(trig.tan(1, 1, 1))
 area = Areas()
 
 pp.printIt(area.circle(5))
+pp.printIt(area.square(2, 5))
+pp.printIt(area.trinagle(2, 4))
 
