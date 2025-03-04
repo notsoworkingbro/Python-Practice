@@ -77,7 +77,7 @@ for x in range(0, 4):
     add.get_sum(x, x+3)
 
 # can directly use class and call staticmethod however must need value on its parameters
-Add.get_sum(1, 2)
+Add.get_sum(1, 4)
 
 # can directly use class and call classmethod, classmethod can use global variables but can also use other parameters
 Add.get_sum_class(3)
