@@ -1,23 +1,61 @@
-import random
+from random import choice
+import time
 
 class Unit:
-    def __init__(self, name, health, armor, attack, movement_speed):
+    def __init__(self, name, health, mana, armor, attack, movement_speed, evasion, skill):
         self.name = name
         self.health = health
+        self.mana = mana
         self.armor = armor
         self.attack = attack
         self.movement_speed = movement_speed
+        self.evasion = evasion
+        self.skill = skill
+
+    def atk(self, *opponents):
+        for opponent in opponents:
+            if self.health < 0:
+                return print(f"Unit Died")
+            
+            # high ms attack first
+            if self.movement_speed > opponent.movement_speed:
+                reduc_atk = (self.attack / opponent.armor +2)
+                opponent.health -= self.attack - reduc_atk
+
+                return print(f"{self.name} attacked {opponent.name} instead and dealt {self.attack} dmg.")
+
+            # rework
+            reduc_atk = (opponent.attack / (self.armor + 2))
+            self.health -= opponent.attack - reduc_atk
+            print(f"{opponent.name} attacked {self.name} and dealt {opponent.attack} dmg.")
+ 
+    def cast(self, *opponents):
+        for opponent in opponents:
+            print(opponent.skill[1])
+
+        # for opponent in opponents:
+        #     ...
 
     # Custom string representation output
     def __str__(self):
-        return f"|Unit: {self.name} |\n|Health: {self.health}|\n|Armor: {self.armor}|\n|Attack: {self.attack}|\n|Movement Speed: {self.movement_speed}|"
+        return f"Unit:{" " * (16)}{self.name}\n"\
+               f"Health:{" " * (14)}{self.health}\n"\
+               f"Armor:{" " * (15)}{self.armor}\n"\
+               f"Attack:{" " * (14)}{self.attack}\n"\
+               f"Movement Speed:{" " * (6)}{self.movement_speed}"
 
 unit_lib = [
-    ("pawn",         *[10, 2, 3, 3]),
-    ("knight",         *[10, 2, 3, 3]),
-    ("paladin",         *[10, 2, 3, 3])
+    Unit("pawn",         *[10, 0, 2, 3, 3, 10, ["Hut", "Tower", "Town Hall"]]),
+    Unit("knight",         *[15, 10, 4, 6, 6, 80, ["Kick", "Impale", "Charge"]]),
+    Unit("paladin",         *[20, 30, 6, 9, 9, 50, ["Smash", "Holy Light", "Divine Armor"]])
 ]
 
+oppressed = choice(unit_lib)
+oppressed.atk(*[choice(unit_lib) for i in range(5)])
+
+print(oppressed)
+
+print(oppressed.skill)
 # class Attack:
 #     @staticmethod
 #     def atk(suppressed, aggressor):
