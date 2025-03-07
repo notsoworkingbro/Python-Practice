@@ -1,0 +1,7 @@
+Units can...
+    move
+    attack
+    cast
+
+when attacking...
+    Armor >>> Damage reduction

@@ -1,20 +1,49 @@
-prices = [120.50, 70.88, 22.19]
-products = ["Oil", "Marker", "Eraser"]
-dictionary = {}
+from random import choice
 
-for i in range(len(prices)):
-    dictionary[products[i]] = prices[i]
+# prices = [120.50, 70.88, 22.19]
+# products = ["Oil", "Marker", "Eraser"]
+# dictionary = {}
 
-print(dictionary)
+# for i in range(len(prices)):
+#     dictionary[products[i]] = prices[i]
 
-# Alternative
-for product, price in zip(products, prices):
-    dictionary[product] = price
+# print(dictionary)
 
-print(dictionary)
+# # Alternative
+# for product, price in zip(products, prices):
+#     dictionary[product] = price
 
-dictionary1 = {products[i]: prices[i] for i in range(len(prices))}
-dictionary2 = {product: price for product, price in zip(products, prices)}
+# print(dictionary)
 
-print(dictionary1)
-print(dictionary2)
+# dictionary1 = {products[i]: prices[i] for i in range(len(prices))}
+# dictionary2 = {product: price for product, price in zip(products, prices)}
+
+# print(dictionary1)
+# print(dictionary2)
+
+# d = {
+#     "a" : 1,
+#     "b" : 2,
+#     "c" : 3
+# }
+
+# z = d.keys()
+# print(z)
+
+# x = list(d.keys())
+# print(x)
+
+# v = d['a']
+# print(v)
+
+# b = d[choice(list(d.keys()))]
+# print(d[choice(list(d.keys()))])
+
+d2 = {
+    "a" : (1, 1),
+    "b" : (2, 5),
+    "c" : (3, 10)
+}
+
+x, y = d2[choice(list(d2.keys()))]
+print(x+y)

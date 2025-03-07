@@ -22,16 +22,39 @@ class Unit:
                 reduc_atk = (self.attack / opponent.armor +2)
                 opponent.health -= self.attack - reduc_atk
 
-                return print(f"{self.name} attacked {opponent.name} instead and dealt {self.attack} dmg.")
-
+                print(f"{self.name} attacked {opponent.name} instead and dealt {self.attack} dmg.")
+            else:
             # rework
-            reduc_atk = (opponent.attack / (self.armor + 2))
-            self.health -= opponent.attack - reduc_atk
-            print(f"{opponent.name} attacked {self.name} and dealt {opponent.attack} dmg.")
+                reduc_atk = (opponent.attack / (self.armor + 2))
+                self.health -= opponent.attack - reduc_atk
+                print(f"{opponent.name} attacked {self.name} and dealt {opponent.attack} dmg.")
  
     def cast(self, *opponents):
         for opponent in opponents:
-            print(opponent.skill[1])
+            if self.health < 0:
+                return print(f"Unit Died")
+            
+            if self.movement_speed > opponent.movement_speed:
+
+                chosen_skill = (choice(list(self.skill.keys())))
+                a, b = self.skill[chosen_skill]
+                # print(chosen_skill, a, b)
+
+                self.mana -= a
+                opponent.health -= b
+                print(f"{self.name} attacked {opponent.name} instead using {chosen_skill} and dealt {b} dmg.\n{self.name} has {self.mana} mana left.\n{opponent.name} has {opponent.health} health left\n\n\n")
+
+            else:
+
+                chosen_skill = (choice(list(opponent.skill.keys())))
+                a, b = opponent.skill[chosen_skill]
+                # print(chosen_skill, a, b)
+
+                opponent.mana -= a
+                self.health -= b
+                print(f"{opponent.name} attacked {self.name} instead using {chosen_skill} and dealt {b} dmg.\n{opponent.name} has {opponent.mana} mana left.\n{self.name} has {self.health} health left\n\n\n")
+            
+            
 
         # for opponent in opponents:
         #     ...
@@ -44,80 +67,61 @@ class Unit:
                f"Attack:{" " * (14)}{self.attack}\n"\
                f"Movement Speed:{" " * (6)}{self.movement_speed}"
 
+# unit_lib = [
+#     Unit("Unit name",         *[health, mana, armor, attack, movement_speed, evasion, 
+#         {"Skill name 1" : (mana, damage), 
+#         "Skill name 2" : (mana, damage), 
+#         "Skill name 2" : (mana, damage)}]),
+# ]
+
+
+
 unit_lib = [
-    Unit("pawn",         *[10, 0, 2, 3, 3, 10, ["Hut", "Tower", "Town Hall"]]),
-    Unit("knight",         *[15, 10, 4, 6, 6, 80, ["Kick", "Impale", "Charge"]]),
-    Unit("paladin",         *[20, 30, 6, 9, 9, 50, ["Smash", "Holy Light", "Divine Armor"]])
+    Unit("pawn",         *[50, 100, 2, 3, 3, 10, 
+        {"Hut" : (0, 1), 
+        "Tower" : (0, 1), 
+        "Town Hall" : (0, 1)
+        
+        }]),
+
+    Unit("knight",         *[75, 200, 4, 6, 6, 80, 
+        {"Kick" : (3, 5), 
+        "Impale" : (5, 6), 
+        "Charge" : (7, 7)
+        
+        }]),
+
+    Unit("paladin",         *[100, 300, 6, 9, 9, 50, 
+        {"Smash" : (5, 10), 
+        "Holy Light" : (20, 15), 
+        "Divine Armor" : (5, 20)
+        
+        }])
 ]
 
 oppressed = choice(unit_lib)
-oppressed.atk(*[choice(unit_lib) for i in range(5)])
 
-print(oppressed)
+# oppressed.cast(*[unit_lib[2] for i in range(3)])
 
-print(oppressed.skill)
-# class Attack:
-#     @staticmethod
-#     def atk(suppressed, aggressor):
-#         # If movement_speed1 > movement_speed2, pawn attacks knight
-#         if suppressed.movement_speed > aggressor.movement_speed:
-#             print('supressed flee')
-#         else:
-#             # dyanamic code for ARMOR HP / ATTACK REDUCTION
-#             suppressed.health = suppressed.health - aggressor.attack + (suppressed.armor/10)
-#             print(suppressed.health)
+oppressed.cast(*[choice(unit_lib) for i in range(10)])
+# oppressed.atk(*[choice(unit_lib) for i in range(3)])
 
-#         # Return the updated stats after the attack
-#         return suppressed, aggressor
+# print(oppressed)
 
-#     # mage stats coming soon
-#     @staticmethod
-#     def slow(pawn_stats, knight_stats):
-#         ...
+# print(choice(list(oppressed.skill.keys())))
 
-# class Spawn:
-#     @staticmethod
-#     def spawn1():
-#         # Define the base stats and random unit selection
-#         unit_lib = [
-#             Unit("pawn",         *[10, 2, 3, 3]),
-#             Unit("knight",       *[50, 10, 15, 10]),
-#             Unit("paladdin",     *[50, 10, 15, 10])
-#         ]
-#         return unit_lib[random.randint(0, 2)]
+# x = choice(list(oppressed.skill.keys()))
+# a, b = oppressed.skill[x]
 
-#     @staticmethod
-#     def spawn2():
-#         # Define the base stats and random unit selection
-#         unit_lib = [
-#             Unit("king",         *[50, 10, 15, 10]),
-#             Unit("archangel",    *[50, 10, 15, 10])
-#         ]
-#         return unit_lib[random.randint(0, 1)]
+# print(oppressed.skill[x])
+# print(a, b)
 
-# spawned1 = Spawn.spawn1()
-# spawned2 = Spawn.spawn2()
+# print(unit_lib[2][6].skill('Divine Armor'))
+# print(choice(oppressed.skill))
 
-# Attack.atk(Spawn.spawn1(), Spawn.spawn2())
+# x, y = d2[choice(list(d2.keys()))]
+# print(x, y)
 
-# Initialize the Human class and get stats
-# print(pawn)
-
-# Unit: pawn
-# Health: 10
-# Armor: 2
-# Attack: 3
-# Movement Speed: 3
-
-# Attack.atk(pawn, knight)
-# Attack.atk(pawn, knight)
-
-# # Perform an attack
-# updated_pawn_stats, updated_knight_stats = Attack.atk(pawn_stats, knight_stats)
-# updated_pawn_stats, updated_knight_stats = Attack.atk(pawn_stats, knight_stats)
-# updated_pawn_stats, updated_knight_stats = Attack.atk(pawn_stats, knight_stats)
-
-# print("After the attack:")
-# print("Updated Pawn Stats:", updated_pawn_stats)
-# print("Updated Knight Stats:", updated_knight_stats)
+# test, test2 = unit_lib[choice(oppressed.skill)]
+# print(test)
 
