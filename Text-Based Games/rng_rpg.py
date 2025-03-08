@@ -96,6 +96,20 @@ unit_lib = [
         "Holy Light" : (20, 15), 
         "Divine Armor" : (5, 20)
         
+        }]),
+
+    Unit("Archangel",         *[300, 300, 60, 90, 90, 500, 
+        {"Holy Rush" : (5, 30), 
+        "Blessing Light" : (20, 35), 
+        "Grace" : (5, 30)
+        
+        }]),
+
+    Unit("Sentinel",         *[400, 400, 50, 60, 190, 700, 
+        {"Imitate" : (5, 50), 
+        "Beam" : (20, 55), 
+        "Divine Departure" : (5, 50)
+        
         }])
 ]
 
@@ -103,8 +117,11 @@ oppressed = choice(unit_lib)
 
 # oppressed.cast(*[unit_lib[2] for i in range(3)])
 
-oppressed.cast(*[choice(unit_lib) for i in range(10)])
-# oppressed.atk(*[choice(unit_lib) for i in range(3)])
+oppressed.cast(*[choice(unit_lib) for i in range(3)])
+oppressed.atk(*[choice(unit_lib) for i in range(3)])
+
+oppressed.cast(*[choice(unit_lib) for i in range(3)])
+oppressed.atk(*[choice(unit_lib) for i in range(3)])
 
 # print(oppressed)
 

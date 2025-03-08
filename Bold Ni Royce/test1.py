@@ -1,0 +1,2 @@
+# use Renpy
+import Renpy
