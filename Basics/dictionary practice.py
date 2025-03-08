@@ -46,4 +46,4 @@ d2 = {
 }
 
 x, y = d2[choice(list(d2.keys()))]
-print(x+y)
+print(x, y)
