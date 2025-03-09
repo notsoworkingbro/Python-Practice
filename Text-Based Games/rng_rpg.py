@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, randint
 import time
 
 class Unit:
@@ -14,45 +14,46 @@ class Unit:
 
     def atk(self, *opponents):
         for opponent in opponents:
+            rnd = randint(0,1)
             if self.health < 0:
                 return print(f"Unit Died")
             
             # high ms attack first
             if self.movement_speed > opponent.movement_speed:
-                reduc_atk = (self.attack / opponent.armor +2)
-                opponent.health -= self.attack - reduc_atk
 
-                print(f"{self.name} attacked {opponent.name} instead and dealt {self.attack} dmg.")
+                if rnd == 1:
+                    self.cast(opponent)
+                    
+                
+                else:
+                    reduc_atk = (self.attack / opponent.armor +2)
+                    opponent.health -= self.attack - reduc_atk
+
+                    print(f"{self.name} attacked {opponent.name} instead and dealt {self.attack} dmg.")
             else:
-            # rework
-                reduc_atk = (opponent.attack / (self.armor + 2))
-                self.health -= opponent.attack - reduc_atk
-                print(f"{opponent.name} attacked {self.name} and dealt {opponent.attack} dmg.")
+
+                if rnd == 1:
+                    opponent.cast(self)
+
+                else:
+                    
+                # rework
+                    reduc_atk = (opponent.attack / (self.armor + 2))
+                    self.health -= opponent.attack - reduc_atk
+                    print(f"{opponent.name} attacked {self.name} and dealt {opponent.attack} dmg.")
  
-    def cast(self, *opponents):
-        for opponent in opponents:
-            if self.health < 0:
-                return print(f"Unit Died")
-            
-            if self.movement_speed > opponent.movement_speed:
+    def cast(self, opponent):
+        chosen_skill = (choice(list(self.skill.keys())))
+        a, b = self.skill[chosen_skill]
+        # print(chosen_skill, a, b)
 
-                chosen_skill = (choice(list(self.skill.keys())))
-                a, b = self.skill[chosen_skill]
-                # print(chosen_skill, a, b)
+        self.mana -= a
+        opponent.health -= b
 
-                self.mana -= a
-                opponent.health -= b
-                print(f"{self.name} attacked {opponent.name} instead using {chosen_skill} and dealt {b} dmg.\n{self.name} has {self.mana} mana left.\n{opponent.name} has {opponent.health} health left\n\n\n")
+        print(f"{self.name} attacked {opponent.name} instead using {chosen_skill} and dealt {b} dmg.\n{self.name} has {self.mana} mana left.\n{opponent.name} has {opponent.health} health left")
 
-            else:
 
-                chosen_skill = (choice(list(opponent.skill.keys())))
-                a, b = opponent.skill[chosen_skill]
-                # print(chosen_skill, a, b)
-
-                opponent.mana -= a
-                self.health -= b
-                print(f"{opponent.name} attacked {self.name} instead using {chosen_skill} and dealt {b} dmg.\n{opponent.name} has {opponent.mana} mana left.\n{self.name} has {self.health} health left\n\n\n")
+                
             
             
 
@@ -113,15 +114,16 @@ unit_lib = [
         }])
 ]
 
-oppressed = choice(unit_lib)
-
+oppressed = (unit_lib[4])
+# oppressed = choice(unit_lib[4])
 # oppressed.cast(*[unit_lib[2] for i in range(3)])
 
-oppressed.cast(*[choice(unit_lib) for i in range(3)])
-oppressed.atk(*[choice(unit_lib) for i in range(3)])
 
-oppressed.cast(*[choice(unit_lib) for i in range(3)])
-oppressed.atk(*[choice(unit_lib) for i in range(3)])
+oppressed.atk(*[(unit_lib[2]) for i in range(3)])
+
+# oppressed.cast(*[choice(unit_lib) for i in range(3)])
+# oppressed.atk(*[choice(unit_lib) for i in range(3)])
+
 
 # print(oppressed)
 
