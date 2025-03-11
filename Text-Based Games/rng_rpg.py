@@ -23,8 +23,7 @@ class Unit:
 
                 if rnd == 1:
                     self.cast(opponent)
-                    
-                
+                                   
                 else:
                     reduc_atk = (self.attack / opponent.armor +2)
                     opponent.health -= self.attack - reduc_atk
@@ -34,6 +33,7 @@ class Unit:
 
                 if rnd == 1:
                     opponent.cast(self)
+                    print("WOW")
 
                 else:
                     
@@ -43,18 +43,14 @@ class Unit:
                     print(f"{opponent.name} attacked {self.name} and dealt {opponent.attack} dmg.")
  
     def cast(self, opponent):
-        chosen_skill = (choice(list(self.skill.keys())))
-        a, b = self.skill[chosen_skill]
-        # print(chosen_skill, a, b)
 
-        self.mana -= a
-        opponent.health -= b
+            chosen_skill = (choice(list(self.skill.keys())))
+            a, b = self.skill[chosen_skill]
+            # print(chosen_skill, a, b)
 
-        print(f"{self.name} attacked {opponent.name} instead using {chosen_skill} and dealt {b} dmg.\n{self.name} has {self.mana} mana left.\n{opponent.name} has {opponent.health} health left")
-
-
-                
-            
+            self.mana -= a
+            opponent.health -= b
+            print(f"{self.name} attacked {opponent.name} using {chosen_skill} and dealt {b} dmg.\n{self.name} has {self.mana} mana left.\n{opponent.name} has {opponent.health} health left")
             
 
         # for opponent in opponents:
@@ -114,12 +110,12 @@ unit_lib = [
         }])
 ]
 
-oppressed = (unit_lib[4])
-# oppressed = choice(unit_lib[4])
+oppressed = choice(unit_lib)
+
 # oppressed.cast(*[unit_lib[2] for i in range(3)])
 
 
-oppressed.atk(*[(unit_lib[2]) for i in range(3)])
+oppressed.atk(*[choice(unit_lib) for i in range(3)])
 
 # oppressed.cast(*[choice(unit_lib) for i in range(3)])
 # oppressed.atk(*[choice(unit_lib) for i in range(3)])
